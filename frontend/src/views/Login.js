@@ -9,10 +9,6 @@ const contextPath = '/raon-demo-cs';
 
 const Login = () => {
 
-    useEffect(() => {
-        common.setConf();
-    }, []);
-
     let history = useHistory();
 
     const [inputs, setInputs] = useState({
@@ -43,8 +39,6 @@ const Login = () => {
                 localStorage.setItem("userName", userInfo.NAME);
                 localStorage.setItem("ssoToken", data.ssoToken);
                 localStorage.setItem("lastLogin", data.lastLogin);
-
-                await common.setToken(`ssotoken`, data.ssoToken);
 
                 history.push(`${contextPath}/Main`);
             } else {

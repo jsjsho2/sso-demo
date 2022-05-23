@@ -10,51 +10,28 @@ const contextPath = '/raon-demo-cs';
 
 const Groupware = () => {
 
-    const [userName, setUserName] = useState('');
-    const [lastLogin, setLastLogin] = useState('');
     let history = useHistory();
 
     useEffect(() => {
         const localToken = localStorage.getItem("ssoToken");
 
         if (localToken !== null && localToken !== '') {
-            tokenCheck(history, localToken);
-        } else {
-            common.getToken('ssotoken')
-                .then(r => {
-                    if (r === '' || r === null || r === 'null') {
+            GetData("/REST/tokenCheck", {ssoToken: localToken})
+                .then((rs) => {
+                    if (rs.nResult >= 0) {
+
+                    } else if (rs.nResult === -9404) {
+                        alert('다른 PC에서 로그인하였습니다. 기존로그인은 종료됩니다.');
                         history.push(`${contextPath}/`);
                     } else {
-                        localStorage.setItem("ssoToken", r);
-                        common.setConf()
-                            .then(() => {
-                                console.log('demooooooo')
-                                tokenCheck(history, r);
-                            });
+                        alert('token 검증 오류. 로그인 페이지로 리다이렉트됩니다.');
+                        history.push(`${contextPath}/`);
                     }
-                })
+                });
+        } else {
+            history.push(`${contextPath}/`);
         }
     }, []);
-
-    function tokenCheck(history, token) {
-        GetData("/REST/tokenCheck", {ssoToken: token})
-            .then((rs) => {
-                if (rs.nResult >= 0) {
-                    const userInfo = JSON.parse(rs.userInfo);
-                    localStorage.setItem("userId", userInfo.ID);
-                    localStorage.setItem("userName", userInfo.NAME);
-                    localStorage.setItem("lastLogin", rs.lastLogin);
-                    setUserName(userInfo.NAME);
-                    setLastLogin(rs.lastLogin);
-
-                } else if (rs.nResult === -9404) {
-                    alert('다른 PC에서 로그인하였습니다. 기존로그인은 종료됩니다.');
-                } else {
-                    alert('token 검증 오류. 로그인 페이지로 리다이렉트됩니다.');
-                    history.push(`${contextPath}/`);
-                }
-            });
-    }
 
     return (
         <>
@@ -67,7 +44,11 @@ const Groupware = () => {
                     />
                     <div className="frame022283-u-idashboard012286">
                         <div className="frame022283-box022287">
-                            <img className="frame022283-image01"/>
+                            <img
+                                alt="box02I228711135546"
+                                src={`${process.env.PUBLIC_URL}/img/box02i228711135546-jlaj-1400w.png`}
+                                className="frame022283-image01"
+                            />
                         </div>
                         <div className="frame022283-maskgroup6383">
                             <img
@@ -90,7 +71,7 @@ const Groupware = () => {
                                                         src={'https://thumb.ac-illust.com/c1/c1607d6f2ba2f9eb5d6f6e5e50bd01e3_t.jpeg'}/>
                                                 </div>
                                                 <div className={'user-info'}>
-                                                    {userName}<br/>
+                                                    {localStorage.getItem('userName')}<br/>
                                                     PRO<br/>
                                                     계정관리기술팀
                                                 </div>
@@ -125,10 +106,7 @@ const Groupware = () => {
                                                         </td>
                                                         <td>
                                                             SSO 회의록 송부드립니다.<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-04-11
-                                                                11:13
-                                                            </div>
+                                                            <div style={{color: '#9e9e9e'}}>2022-04-11 11:13</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -137,10 +115,7 @@ const Groupware = () => {
                                                         </td>
                                                         <td>
                                                             SSO 관련 문의드립니다.<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-03-18
-                                                                18:42
-                                                            </div>
+                                                            <div style={{color: '#9e9e9e'}}>2022-03-18 18:42</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -149,10 +124,7 @@ const Groupware = () => {
                                                         </td>
                                                         <td>
                                                             [SHWEB] 프로젝트 관련 검토 요청드립니다.<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-02-15
-                                                                16:01
-                                                            </div>
+                                                            <div style={{color: '#9e9e9e'}}>2022-02-15 16:01</div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -161,36 +133,25 @@ const Groupware = () => {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div className={'sub-divs'}
-                                                 style={{marginTop: '56px'}}>
+                                            <div className={'sub-divs'} style={{marginTop: '56px'}}>
                                                 <div>전사게시판</div>
                                                 <table className={'groupware-table'}>
                                                     <tr>
                                                         <td>
                                                             [공유] 정보보안의 중요성<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-04-11
-                                                                09:10
-                                                            </div>
+                                                            <div style={{color: '#9e9e9e'}}>2022-04-11 09:10</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
                                                             [무료나눔] 1달 사용한 기계식키보드 무료로 나눔합니다<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-04-01
-                                                                11:35
-                                                            </div>
+                                                            <div style={{color: '#9e9e9e'}}>2022-04-01 11:35</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            [공지] 각 층별 휴게실에 천혜향 2박스씩 놓아두었습니다. 마음껏
-                                                            드세요<br/>
-                                                            <div
-                                                                style={{color: '#9e9e9e'}}>2022-03-27
-                                                                10:01
-                                                            </div>
+                                                            [공지] 각 층별 휴게실에 천혜향 2박스씩 놓아두었습니다. 마음껏 드세요<br/>
+                                                            <div style={{color: '#9e9e9e'}}>2022-03-27 10:01</div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -206,13 +167,31 @@ const Groupware = () => {
                             <div className="frame022283-frame-i234711167219">
                                 <span className="frame022283-text10">
                                     <span className="frame022283-text11" style={{marginLeft: '-20px'}}>
-                                        {userName}님 환영합니다. {lastLogin}
+                                        {localStorage.getItem('userName')}님 환영합니다. {localStorage.getItem('lastLogin')}
                                     </span>
                                 </span>
+                                <button className="frame022283-buttons-primary-i234711167300"
+                                        style={{cursor: 'pointer'}}
+                                        onClick={() => {
+                                            common.logout(history)
+                                        }}>
+                                    <div className="frame022283-surface-i23471116730011088202">
+                                        <img
+                                            alt="SurfaceI2347111673001108820211088089"
+                                            src={`${process.env.PUBLIC_URL}/img/surfacei2347111673001108820211088089-ob8c-200h.png`}
+                                            className="frame022283-image20"
+                                        />
+                                        <span className="frame022283-text12">
+                                            <span className="frame022283-text13">로그아웃</span>
+                                        </span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div className="frame022283-group3256356" style={{cursor: 'default'}}>
+                    <div className="frame022283-group3256356" onClick={() => {
+                        common.goMain(history)
+                    }}>
                         <img
                             alt="Vector6357"
                             src={`${process.env.PUBLIC_URL}/img/vector6357-ifh4.svg`}

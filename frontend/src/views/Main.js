@@ -15,13 +15,7 @@ const Main = () => {
         aaaaaab: ['그룹웨어',
             <>
                 <div className="frame022283-u-idashboard012304" style={{cursor: 'pointer'}}
-                     onClick={() => {
-                         const appPath = "C:/Program Files (x86)/Internet Explorer/iexplore.exe";
-                         const appArgument = `http://${window.location.host}/raon-demo-cs/Groupware`;
-                         const appCurrentDir = "";
-                         common.runApp(appPath, appArgument, appCurrentDir);
-                         // pageMove('/Groupware')
-                     }}>
+                     onClick={() => pageMove('/Groupware')}>
                     <img
                         alt="box022305"
                         src={`${process.env.PUBLIC_URL}/img/box022305-be24-300h.png`}
