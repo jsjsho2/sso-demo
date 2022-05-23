@@ -18,7 +18,7 @@ package.json - proxy port 알맞게 수정
 >1. terminal 탭/cmd 창을 열고 루트 경로로 이동
 >2. gradlew build
 >3. 프로젝트 루트 경로 밑 build/libs/xxxxxxxxxx.jar 배포
->6. java -jar 파일PATH/xxxxxxxxxx.jar
+>6. java -jar 파일PATH/xxxxxxxx xx.jar
 >7. xxx.xxx.xxx.xxx:PORT/contextPath 접근
 
 >* .war

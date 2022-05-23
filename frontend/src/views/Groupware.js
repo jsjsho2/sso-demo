@@ -28,7 +28,7 @@ const Groupware = () => {
                         localStorage.setItem("ssoToken", r);
                         common.setConf()
                             .then(() => {
-                                console.log('demooooooooooossssssssssssss')
+                                console.log('demooooooo')
                                 tokenCheck(history, r);
                             });
                     }
