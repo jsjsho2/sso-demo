@@ -1,0 +1,76 @@
+.groupware-wrapper {
+    width: 100%;
+    margin: 0 40px 0 40px;
+}
+
+.groupware-wrapper table {
+    width: 100%;
+}
+
+td {
+    min-height: 30px;
+}
+
+.user-info {
+    width: auto;
+    display: inline-block;
+}
+
+.user-info img {
+    width: 90px;
+    height: 58px;
+}
+
+.user-info-wrapper {
+    width: 262px;
+    border: 1px solid #9e9e9e;
+    border-radius: 10px;
+    height: 300px;
+    padding: 15px;
+    position: relative;
+    top: -97px;
+}
+
+.user-info-wrapper table, .user-info-wrapper td {
+    font-size: 20px;
+    margin-top: 45px;
+}
+
+.user-info-wrapper table, .user-info-wrapper td {
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+
+.user-info-wrapper tr {
+    height: 44px;
+}
+
+.user-info-wrapper b {
+    color: #aaaaaa;
+}
+
+.sub-divs {
+    border: 1px solid #9e9e9e;
+    width: 875px;
+    border-radius: 10px;
+    height: 230px;
+}
+
+.sub-divs > div {
+    font-size: 17px;
+    padding: 4px 9px;
+}
+
+.groupware-table {
+    margin-top: 23px;
+}
+
+.sub-divs .groupware-table, .sub-divs .groupware-table td {
+    padding-left: 7px;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+
+.groupware-table tr {
+    height: 56px;
+}

@@ -1,0 +1,25 @@
+.table-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.approval-wrapper {
+    width: 100%;
+    margin: 0 40px 0 40px;
+}
+
+.approval-wrapper table {
+    width: 100%;
+    font-size: 17px;
+}
+
+.approval-wrapper table > tr:first-child {
+    /*width: 100%;*/
+    font-size: 17px;
+    background: #dfdfdf;
+    border-bottom: 1px solid black;
+}
+
+.approval-wrapper table td {
+    border-bottom: 1px solid black;
+}

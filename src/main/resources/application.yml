@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.166:3306/wiseaccess?useSSL=false&rewriteBatchedStatements=true
+    username: wiseaccess
+    password: dprtptm234$
+
+sso-engine:
+  key: 368B184727E89AB69FAF
+  ip: 192.168.0.166
+  port: 7000
+  gid: GID_DEMO1
+
+server:
+  servlet:
+    context-path: /raon-demo-cs
